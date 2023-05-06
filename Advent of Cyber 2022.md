@@ -13,3 +13,5 @@ day 3 was nothng intersting some searches in whois and github
 after accesing the samba share and admin folder we found the flag   
 {THM_SANTA_SMB_SERVER}
 # Day 5
+after accesing vnc after bruteforcing through hydra we got the flag on screen  
+THM{I_SEE_YOUR_SCREEN}
