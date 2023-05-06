@@ -7,3 +7,5 @@ Log Files in Linux ----> /var/log
 to get the flag i made grep -r "THM{}"  
 THM{STOLENSANTASLIST}
 # Day 3
+day 3 was nothng intersting some searches in whois and github  
+{THM_OSINT_WORKS}
