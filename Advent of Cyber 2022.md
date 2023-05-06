@@ -9,3 +9,7 @@ THM{STOLENSANTASLIST}
 # Day 3
 day 3 was nothng intersting some searches in whois and github  
 {THM_OSINT_WORKS}
+# Day 4 
+after accesing the samba share and admin folder we found the flag   
+{THM_SANTA_SMB_SERVER}
+# Day 5
