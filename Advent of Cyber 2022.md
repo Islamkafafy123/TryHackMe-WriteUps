@@ -1,5 +1,6 @@
 # Day 1 
-day 1 was about some security principles and the flag and all the answers were preety easy and can be found on the site provided
+day 1 was about some security principles and the flag and all the answers were preety easy and can be found on the site provided  
+after answering site questions ---> THM{IT'S A Y3T1 CHR1$TMA$}
 # Day 2
 Log files in Windows Can be Found ----> Event Viewr
 Log Files in Linux ----> /var/log  
