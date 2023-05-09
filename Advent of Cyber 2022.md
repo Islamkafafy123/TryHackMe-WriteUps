@@ -15,3 +15,8 @@ after accesing the samba share and admin folder we found the flag
 # Day 5
 after accesing vnc after bruteforcing through hydra we got the flag on screen  
 THM{I_SEE_YOUR_SCREEN}
+# Day 6
+no flag here just answering some quistions about email analysis and learning about them
+# Day 7
+Learned about cyper chef and using it 
+THM_MYSTERY_FLAG
