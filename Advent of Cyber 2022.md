@@ -20,3 +20,7 @@ no flag here just answering some quistions about email analysis and learning abo
 # Day 7
 Learned about cyper chef and using it 
 THM_MYSTERY_FLAG
+# Day 8
+i actuelly didint understand the concept abput blockchain and contracts but will defintly come bakc later  
+flag{411_ur_37h_15_m1n3}
+
