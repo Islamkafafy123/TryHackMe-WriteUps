@@ -1,2 +1,2 @@
 # TryHackMe-WriteUps
-Rooms I have finished in THM Platform
+Rooms I have finished and Studied in THM Platform
