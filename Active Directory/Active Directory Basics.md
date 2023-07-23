@@ -60,4 +60,12 @@
   - Domain Controllers are the third most common device within an Active Directory domain. Domain Controllers allow you to manage the Active Directory Domain. 
     These devices are often deemed the most sensitive devices within the network as they contain hashed passwords for all user accounts within the environment
 # Group Policies
+- Group Policy Objects (GPO). GPOs are simply a collection of settings that can be applied to OUs. GPOs can contain policies aimed at either users or computers, allowing you to set a baseline on specific machines and identities
+- To configure GPOs, you can use the Group Policy Management tool
+- To configure Group Policies, you first create a GPO under Group Policy Objects and then link it to the GPO where you want the policies to apply
+- GPOs are distributed to the network via a network share called SYSVOL
+- which is stored in the DC. All users in a domain should typically have access to this share over the network to sync their GPOs periodically
+- The SYSVOL share points by default to the C:\Windows\SYSVOL\sysvol\ directory on each of the DCs in our network
+- Once a change has been made to any GPOs, it might take up to 2 hours for computers to catch up. If you want to force any particular computer to sync its GPOs immediately,---> **gpupdate /force**
+# Authentication Methods
 - 
