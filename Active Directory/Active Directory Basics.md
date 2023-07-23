@@ -94,6 +94,10 @@
   - The TGS contains a copy of the Service Session Key on its encrypted contents so that the Service Owner can access it by decrypting the TGS
 ![tgs](https://github.com/Islamkafafy123/TryHackMe-WriteUps/blob/main/Pictures/tgs.png)
 
-- The TGS can then be sent to the desired service to authenticate and establish a connection. The service will use its configured account's password hash to decrypt the TGS and validate the Service Session Key
+  - The TGS can then be sent to the desired service to authenticate and establish a connection. The service will use its configured account's password hash to decrypt the TGS and validate the Service Session Key
 
 ![tgs2](https://github.com/Islamkafafy123/TryHackMe-WriteUps/blob/main/Pictures/tgs2.png)
+
+- NetNTLM Authentication
+  - NetNTLM works using a challenge-response mechanism
+![ntlm](https://github.com/Islamkafafy123/TryHackMe-WriteUps/blob/main/Pictures/ntlm.png)
