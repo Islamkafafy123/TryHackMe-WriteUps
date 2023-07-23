@@ -26,5 +26,9 @@
 
 ![security groups](https://github.com/Islamkafafy123/TryHackMe-WriteUps/blob/main/Pictures/sec.jpeg)
 - To configure users, groups or machines in Active Directory, we need to log in to the Domain Controller and run "Active Directory Users and Computers" from the start menu:
+  
 ![security groups1](https://github.com/Islamkafafy123/TryHackMe-WriteUps/blob/main/Pictures/sec1.png)
+- open up a window where you can see the hierarchy of users, computers and groups that exist in the domain. These objects are organised in Organizational Units (OUs) which are container objects that allow you to classify users and machines. OUs are mainly used to define sets of users with similar policing requirements
+-  people in the Sales department of your organisation are likely to have a different set of policies applied than the people in IT
+-  a user can only be a part of a single OU at a time
 
