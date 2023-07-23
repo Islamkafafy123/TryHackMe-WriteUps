@@ -31,4 +31,15 @@
 - open up a window where you can see the hierarchy of users, computers and groups that exist in the domain. These objects are organised in Organizational Units (OUs) which are container objects that allow you to classify users and machines. OUs are mainly used to define sets of users with similar policing requirements
 -  people in the Sales department of your organisation are likely to have a different set of policies applied than the people in IT
 -  a user can only be a part of a single OU at a time
-
+- there are default containers
+  - Builtin: Contains default groups available to any Windows host.
+  - Computers: Any machine joining the network will be put here by default. You can move them if needed.
+  - Domain Controllers: Default OU that contains the DCs in your network.
+  - Users: Default users and groups that apply to a domain-wide context.
+  - Managed Service Accounts: Holds accounts used by services in your Windows domain.
+- groups and OUs. While both are used to classify users and computers, their purposes are entirely different
+  - OUs are handy for applying policies to users and computers, which include specific configurations that pertain to sets of users depending on their 
+    particular role in the enterprise. Remember, a user can only be a member of a single OU at a time, as it wouldn't make sense to try to apply two different 
+    sets of policies to a single user
+  - Security Groups, on the other hand, are used to grant permissions over resources. For example, you will use groups if you want to allow some users to 
+    access a shared folder or network printer. A user can be a part of many groups, which is needed to grant access to multiple resources
