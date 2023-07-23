@@ -1,6 +1,6 @@
 # Introduction
 - Microsoft's Active Directory is the backbone of the corporate world. It simplifies the management of devices and users within a corporate environment
-# windows Doamins
+# Windows Domins
 - a Windows domain is a group of users and computers under the administration of a given business. The main idea behind a domain is to centralise the administration of common components of a Windows computer network in a single repository called Active Directory (AD)
 - The server that runs the Active Directory services is known as a Domain Controller (DC).
 ![DomainC](https://github.com/Islamkafafy123/TryHackMe-WriteUps/blob/main/Pictures/dom.png)
@@ -68,4 +68,32 @@
 - The SYSVOL share points by default to the C:\Windows\SYSVOL\sysvol\ directory on each of the DCs in our network
 - Once a change has been made to any GPOs, it might take up to 2 hours for computers to catch up. If you want to force any particular computer to sync its GPOs immediately,---> **gpupdate /force**
 # Authentication Methods
-- 
+- When using Windows domains, all credentials are stored in the Domain Controllers
+- Whenever a user tries to authenticate to a service using domain credentials, the service will need to ask the Domain Controller to verify if they are correct
+- Two protocols can be used for network authentication in windows domains
+  - Kerberos: Used by any recent version of Windows. This is the default protocol in any recent domain
+  - NetNTLM: Legacy authentication protocol kept for compatibility purposes
+- most networks will have both protocols enabled
+- Kerberos Authentication
+  - The user sends their username and a timestamp encrypted using a key derived from their password to the Key Distribution Center (KDC) ( a service usually installed on the Domain 
+    Controller in charge of creating Kerberos tickets on the network)
+  - The KDC will create and send back a Ticket Granting Ticket (TGT), which will allow the user to request additional tickets to access specific services
+  -  Along with the TGT, a Session Key is given to the user, which they will need to generate the following requests
+  -  the TGT is encrypted using the krbtgt account's password hash, and therefore the user can't access its contents
+  -  It is essential to know that the encrypted TGT includes a copy of the Session Key as part of its contents
+  -  and the KDC has no need to store the Session Key as it can recover a copy by decrypting the TGT if needed
+![kerb](https://github.com/Islamkafafy123/TryHackMe-WriteUps/blob/main/Pictures/kerb.png)
+ 
+- When a user wants to connect to a service on the network like a share, website or database, they will use their TGT to ask the KDC for a Ticket Granting Service (TGS)
+  -  TGS are tickets that allow connection only to the specific service they were created for.
+  -  To request a TGS, the user will send their username and a timestamp encrypted using the Session Key, along with the TGT and a Service Principal Name (SPN)
+  -  which indicates the service and server name we intend to access
+  -  As a result, the KDC will send us a TGS along with a Service Session Key, which we will need to authenticate to the service we want to access
+  -  The TGS is encrypted using a key derived from the Service Owner Hash
+     - The Service Owner is the user or machine account that the service runs under
+  - The TGS contains a copy of the Service Session Key on its encrypted contents so that the Service Owner can access it by decrypting the TGS
+![tgs](https://github.com/Islamkafafy123/TryHackMe-WriteUps/blob/main/Pictures/tgs.png)
+
+- The TGS can then be sent to the desired service to authenticate and establish a connection. The service will use its configured account's password hash to decrypt the TGS and validate the Service Session Key
+
+![tgs2](https://github.com/Islamkafafy123/TryHackMe-WriteUps/blob/main/Pictures/tgs2.png)
