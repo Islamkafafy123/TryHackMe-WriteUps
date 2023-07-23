@@ -43,3 +43,21 @@
     sets of policies to a single user
   - Security Groups, on the other hand, are used to grant permissions over resources. For example, you will use groups if you want to allow some users to 
     access a shared folder or network printer. A user can be a part of many groups, which is needed to grant access to multiple resources
+# Managing Users in AD
+- to give specific users some control over some OUs. This process is known as delegation and allows you to grant users specific privileges to perform advanced tasks on OUs without needing a Domain Administrator to step in
+-  to do password resets. In this case, we will be using Powershell to do so
+  - **Set-ADAccountPassword sophie -Reset -NewPassword (Read-Host -AsSecureString -Prompt 'New Password') -Verbose**
+- since we wouldn't want Sophie to keep on using a password we know, we can also force a password reset at the next logon with the following command
+  - **Set-ADUser -ChangePasswordAtLogon $true -Identity sophie -Verbose**
+# Managing Computers in AD
+- By default, all the machines that join a domain (except for the DCs) will be put in the container called "Computers"
+- Workstations
+  - Workstations are one of the most common devices within an Active Directory domain. Each user in the domain will likely be logging into a workstation. This 
+    is the device they will use to do their work or normal browsing activities. These devices should never have a privileged user signed into them
+- Servers
+  - Servers are the second most common device within an Active Directory domain. Servers are generally used to provide services to users or other servers
+- Domain Controllers
+  - Domain Controllers are the third most common device within an Active Directory domain. Domain Controllers allow you to manage the Active Directory Domain. 
+    These devices are often deemed the most sensitive devices within the network as they contain hashed passwords for all user accounts within the environment
+# Group Policies
+- 
