@@ -57,4 +57,4 @@
 - Azure AD Overview
   - Azure acts as the middle man between your physical Active Directory and your users' sign on. This allows for a more secure transaction between domains, making a lot of Active Directory attacks ineffective
 - Cloud Security Overview
-![cloud]()
+![cloud](https://github.com/Islamkafafy123/TryHackMe-WriteUps/blob/main/Pictures/cloud.jpeg)
