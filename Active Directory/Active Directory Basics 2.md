@@ -1,2 +1,12 @@
-# Intro
--
+#  Physical Active Directory
+- The physical Active Directory is the servers and machines on-premise
+- can be anything from domain controllers and storage servers to domain user machines; everything needed for an Active Directory environment besides the software
+- Domain Controllers
+  - Windows server that has Active Directory Domain Services (AD DS) installed and has been promoted to a domain controller in the forest
+  - Domain controllers are the center of Active Directory -- they control the rest of the domain
+  - holds the AD DS data store
+  - handles authentication and authorization services
+  - replicate updates from other domain controllers in the forest
+  - Allows admin access to manage domain resources
+- AD DS Data Store
+  - 
