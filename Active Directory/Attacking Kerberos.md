@@ -54,3 +54,6 @@ Rubeus.exe harvest /interval:30 - This command tells Rubeus to harvest for TGTs 
   Rubeus.exe brute /password:Password1 /noticket - This will take a given password and "spray" it against all found users then give the .kirbi TGT for that user
   ```
 # Kerberoasting w/ Rubeus & Impacket
+- Kerberoasting allows a user to request a service ticket for any service with a registered SPN then use that ticket to crack the service password
+- If the service has a registered SPN then it can be Kerberoastable however the success of the attack depends on how strong the password is
+- To enumerate Kerberoastable accounts I would suggest a tool like BloodHound to find all Kerberoastable account
