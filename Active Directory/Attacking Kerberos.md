@@ -105,3 +105,23 @@ hashcat -m 18200 hash.txt Pass.txt - crack those hashes! Rubeus AS-REP Roasting 
   - Don't turn off Kerberos Pre-Authentication unless it's necessary there's almost no other way to completely mitigate this attack other than keeping Pre-Authentication on.
 
 # Pass the Ticket w/ mimikatz
+- Mimikatz is a very popular and powerful post-exploitation tool most commonly used for dumping user credentials inside of an active directory network however we'll be using mimikatz in order to dump a TGT from LSASS memory
+- Pass the Ticket
+  - Pass the ticket works by dumping the TGT from the LSASS memory of the machine
+  - The Local Security Authority Subsystem Service (LSASS) is a memory process that stores credentials on an active directory server and can store Kerberos ticket along with other credential types to act as the gatekeeper and accept or reject the credentials provided
+  - can dump the Kerberos Tickets from the LSASS memory just like you can dump hashes. When you dump the tickets with mimikatz it will give us a .kirbi ticket which can be used to gain domain admin if a domain admin ticket is in the LSASS memory
+  - great for privilege escalation and lateral movement if there are unsecured domain service account tickets laying around
+  - allows you to escalate to domain admin if you dump a domain admin's ticket and then impersonate that ticket using mimikatz PTT attack allowing you to act as that domain admin
+  - think of a pass the ticket attack like reusing an existing ticket were not creating or destroying any tickets here were simply reusing an existing ticket from another user on the domain and impersonating that ticket
+    ```
+    sekurlsa::tickets /export - this will export all of the .kirbi tickets into the directory that you are currently in
+    ```
+  - we have our ticket ready we can now perform a pass the ticket attack to gain domain admin privileges
+  - ```
+    kerberos::ptt <ticket> - run this command inside of mimikatz with the ticket that you harvested from earlier. It will cache and impersonate the given ticket
+    ```
+  - ```
+    klist - Here were just verifying that we successfully impersonated the ticket by listing our cached tickets
+    ```
+- Pass the Ticket Mitigation
+  - Don't let your domain admins log onto anything except the domain controller - This is something so simple however a lot of domain admins still log onto low-level computers leaving tickets around that we can use to attack and move laterally with.
