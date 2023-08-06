@@ -89,3 +89,19 @@ Kerberoasting w/ Impacket -
   - Don't Make Service Accounts Domain Admins - Service accounts don't need to be domain admins, kerberoasting won't be as effective if you don't make service accounts domain admins.
 
 # AS-REP Roasting w/ Rubeus
+- AS-REP Roasting dumps the krbasrep5 hashes of user accounts that have Kerberos pre-authentication disabled
+- users do not have to be service accounts the only requirement to be able to AS-REP roast a user is the user must have pre-authentication disabled
+- During pre-authentication, the users hash will be used to encrypt a timestamp that the domain controller will attempt to decrypt to validate that the right hash is being used
+- After validating the timestamp the KDC will then issue a TGT for the user. If pre-authentication is disabled you can request any authentication data for any user and the KDC will return an encrypted TGT
+- can be cracked offline because the KDC skips the step of validating that the user is really who they say that they are
+
+```
+Rubeus.exe asreproast - This will run the AS-REP roast command looking for vulnerable users and then dump found vulnerable user hashes.
+insert 23$ after $krb5asrep$ so that the first line will be $krb5asrep$23$User.....
+hashcat -m 18200 hash.txt Pass.txt - crack those hashes! Rubeus AS-REP Roasting uses hashcat mode 18200 
+```
+- AS-REP Roasting Mitigations
+  - Have a strong password policy. With a strong password, the hashes will take longer to crack making this attack less effective
+  - Don't turn off Kerberos Pre-Authentication unless it's necessary there's almost no other way to completely mitigate this attack other than keeping Pre-Authentication on.
+
+# Pass the Ticket w/ mimikatz
