@@ -36,4 +36,10 @@
   - Your TGT then gives the encrypted timestamp, session key, and the encrypted TGT
   - The KDC will then authenticate the TGT and give back a service ticket for the requested service
   - normal TGT will only work with that given service account that is connected to it however a KRBTGT allows you to get any service ticket that you want allowing you to access anything on the domain that you want
--  
+# Enumeration w/ Kerbrute
+- By brute-forcing Kerberos pre-authentication, you do not trigger the account failed to log on event which can throw up red flags to blue teams
+- When brute-forcing through Kerberos you can brute-force by only sending a single UDP frame to the KDC allowing you to enumerate the users on the domain from a wordlist
+```
+./TOOLS/kerbrute userenum --dc CONTROLLER.local -d CONTROLLER.local /home/kali/TOOLS/Active-Directory-Wordlists/User.txt
+```
+# Harvesting & Brute-Forcing Tickets w/ Rubeus
